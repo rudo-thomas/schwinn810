@@ -109,7 +109,8 @@ SI_STATUS WINAPI SI_Read(
 	HANDLE cyHandle,
 	LPVOID lpBuffer,
 	DWORD dwBytesToRead,
-	LPDWORD lpdwBytesReturned
+	LPDWORD lpdwBytesReturned,
+	OVERLAPPED* o
 	);
 
 SI_USB_XP_API 
@@ -117,7 +118,8 @@ SI_STATUS WINAPI SI_Write(
 	HANDLE cyHandle,
 	LPVOID lpBuffer,
 	DWORD dwBytesToWrite,
-	LPDWORD lpdwBytesWritten
+	LPDWORD lpdwBytesWritten,
+	OVERLAPPED* o
 	);
 
 SI_USB_XP_API 
