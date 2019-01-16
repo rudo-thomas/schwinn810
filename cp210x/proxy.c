@@ -63,7 +63,7 @@ SI_STATUS WINAPI proxySI_Read(
 	)
 {
   SI_STATUS err = SI_Read(cyHandle, lpBuffer, dwBytesToRead, lpdwBytesReturned);
-  fprintf(file, "0x%X = SI_Read(cyHandle=0x%X, lpBuffer, dwBytesToRead=0x%X, lpdwBytesReturned=>0x%X)\n", err, dwBytesToRead, *lpdwBytesReturned);
+  fprintf(file, "0x%X = SI_Read(cyHandle=0x%X, lpBuffer, dwBytesToRead=0x%X, lpdwBytesReturned=>0x%X)\n", err, cyHandle, dwBytesToRead, *lpdwBytesReturned);
   hexdump(lpBuffer, *lpdwBytesReturned);
   return err;
 }
@@ -77,7 +77,7 @@ SI_STATUS WINAPI proxySI_Write(
 	)
 {
   SI_STATUS err = SI_Write(cyHandle, lpBuffer, dwBytesToWrite, lpdwBytesWritten);
-  fprintf(file, "0x%X = SI_Write(cyHandle=0x%X, lpBuffer, dwBytesToWrite=0x%X, lpdwBytesWritten=0x%X)\n", err, dwBytesToWrite, *lpdwBytesWritten);
+  fprintf(file, "0x%X = SI_Write(cyHandle=0x%X, lpBuffer, dwBytesToWrite=0x%X, lpdwBytesWritten=0x%X)\n", err, cyHandle, dwBytesToWrite, *lpdwBytesWritten);
   hexdump(lpBuffer, dwBytesToWrite);
   return err;
 }
