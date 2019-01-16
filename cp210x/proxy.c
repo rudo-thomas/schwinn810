@@ -251,7 +251,6 @@ SI_STATUS WINAPI proxySI_GetPartNumber(
   return err;
 }
 
-/*
 SI_USB_XP_API
 SI_STATUS WINAPI proxySI_GetDeviceProductString(	
 	HANDLE	cyHandle,
@@ -261,7 +260,7 @@ SI_STATUS WINAPI proxySI_GetDeviceProductString(
 	)
 {
   SI_STATUS err = SI_GetDeviceProductString(cyHandle, lpProduct, lpbLength, bConvertToASCII);
-  fprintf(file, "0x%X = SI_GetDeviceProductString(cyHandle=0x%X, &Product, &Length=0x%X, bConvertToASCII=%d)\n", err, cyHandle, lpbLength, bConvertToASCII);
+  fprintf(file, "0x%X = SI_GetDeviceProductString(cyHandle=0x%X, &lbProduct, lpbLength=>0x%X, bConvertToASCII=%d)\n", err, cyHandle, *lpbLength, bConvertToASCII);
   fprintf(file, "lpProduct:\n");
   hexdump(lpProduct, *lpbLength);
   return err;
@@ -274,8 +273,7 @@ SI_STATUS WINAPI proxySI_GetDLLVersion(
 	)
 {
   SI_STATUS err = SI_GetDLLVersion(HighVersion, LowVersion);
-  fprintf(file, "0x%X = SI_GetDLLVersion(&HighVersion, &LowVersion)\n", err);
-  fprintf(file, "HighVersion = %lX, LowVersion = %lX\n", *HighVersion, *LowVersion);
+  fprintf(file, "0x%X = SI_GetDLLVersion(HighVersion=>0x%lX, LowVersion=>0x%lX)\n", err, *HighVersion, *LowVersion);
   return err;
 }
 
@@ -286,8 +284,6 @@ SI_STATUS WINAPI proxySI_GetDriverVersion(
 	)
 {
   SI_STATUS err = SI_GetDriverVersion(HighVersion, LowVersion);
-  fprintf(file, "0x%X = SI_GetDriverVersion(&HighVersion, &LowVersion)\n", err);
-  fprintf(file, "HighVersion = %lX, LowVersion = %lX\n", *HighVersion, *LowVersion);
+  fprintf(file, "0x%X = SI_GetDriverVersion(HighVersion=>0x%lX, LowVersion=>0x%lX)\n", err, *HighVersion, *LowVersion);
   return err;
 }
-*/
