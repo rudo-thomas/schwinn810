@@ -59,11 +59,12 @@ SI_STATUS WINAPI proxySI_Read(
 	HANDLE cyHandle,
 	LPVOID lpBuffer,
 	DWORD dwBytesToRead,
-	LPDWORD lpdwBytesReturned
+	LPDWORD lpdwBytesReturned,
+	OVERLAPPED* o
 	)
 {
-  SI_STATUS err = SI_Read(cyHandle, lpBuffer, dwBytesToRead, lpdwBytesReturned);
-  fprintf(file, "0x%X = SI_Read(cyHandle=0x%X, lpBuffer, dwBytesToRead=0x%X, lpdwBytesReturned=>0x%X)\n", err, dwBytesToRead, *lpdwBytesReturned);
+  SI_STATUS err = SI_Read(cyHandle, lpBuffer, dwBytesToRead, lpdwBytesReturned, o);
+  fprintf(file, "0x%X = SI_Read(cyHandle=0x%X, lpBuffer, dwBytesToRead=0x%X, lpdwBytesReturned=>0x%X, o=0x%X)\n", err, cyHandle, dwBytesToRead, *lpdwBytesReturned, o);
   hexdump(lpBuffer, *lpdwBytesReturned);
   return err;
 }
@@ -73,11 +74,12 @@ SI_STATUS WINAPI proxySI_Write(
 	HANDLE cyHandle,
 	LPVOID lpBuffer,
 	DWORD dwBytesToWrite,
-	LPDWORD lpdwBytesWritten
+	LPDWORD lpdwBytesWritten,
+	OVERLAPPED* o
 	)
 {
-  SI_STATUS err = SI_Write(cyHandle, lpBuffer, dwBytesToWrite, lpdwBytesWritten);
-  fprintf(file, "0x%X = SI_Write(cyHandle=0x%X, lpBuffer, dwBytesToWrite=0x%X, lpdwBytesWritten=0x%X)\n", err, dwBytesToWrite, *lpdwBytesWritten);
+  SI_STATUS err = SI_Write(cyHandle, lpBuffer, dwBytesToWrite, lpdwBytesWritten, o);
+  fprintf(file, "0x%X = SI_Write(cyHandle=0x%X, lpBuffer, dwBytesToWrite=0x%X, lpdwBytesWritten=0x%X, o=0x%X)\n", err, cyHandle, dwBytesToWrite, *lpdwBytesWritten, o);
   hexdump(lpBuffer, dwBytesToWrite);
   return err;
 }
@@ -249,7 +251,6 @@ SI_STATUS WINAPI proxySI_GetPartNumber(
   return err;
 }
 
-/*
 SI_USB_XP_API
 SI_STATUS WINAPI proxySI_GetDeviceProductString(	
 	HANDLE	cyHandle,
@@ -259,7 +260,7 @@ SI_STATUS WINAPI proxySI_GetDeviceProductString(
 	)
 {
   SI_STATUS err = SI_GetDeviceProductString(cyHandle, lpProduct, lpbLength, bConvertToASCII);
-  fprintf(file, "0x%X = SI_GetDeviceProductString(cyHandle=0x%X, &Product, &Length=0x%X, bConvertToASCII=%d)\n", err, cyHandle, lpbLength, bConvertToASCII);
+  fprintf(file, "0x%X = SI_GetDeviceProductString(cyHandle=0x%X, &lbProduct, lpbLength=>0x%X, bConvertToASCII=%d)\n", err, cyHandle, *lpbLength, bConvertToASCII);
   fprintf(file, "lpProduct:\n");
   hexdump(lpProduct, *lpbLength);
   return err;
@@ -272,8 +273,7 @@ SI_STATUS WINAPI proxySI_GetDLLVersion(
 	)
 {
   SI_STATUS err = SI_GetDLLVersion(HighVersion, LowVersion);
-  fprintf(file, "0x%X = SI_GetDLLVersion(&HighVersion, &LowVersion)\n", err);
-  fprintf(file, "HighVersion = %lX, LowVersion = %lX\n", *HighVersion, *LowVersion);
+  fprintf(file, "0x%X = SI_GetDLLVersion(HighVersion=>0x%lX, LowVersion=>0x%lX)\n", err, *HighVersion, *LowVersion);
   return err;
 }
 
@@ -284,8 +284,6 @@ SI_STATUS WINAPI proxySI_GetDriverVersion(
 	)
 {
   SI_STATUS err = SI_GetDriverVersion(HighVersion, LowVersion);
-  fprintf(file, "0x%X = SI_GetDriverVersion(&HighVersion, &LowVersion)\n", err);
-  fprintf(file, "HighVersion = %lX, LowVersion = %lX\n", *HighVersion, *LowVersion);
+  fprintf(file, "0x%X = SI_GetDriverVersion(HighVersion=>0x%lX, LowVersion=>0x%lX)\n", err, *HighVersion, *LowVersion);
   return err;
 }
-*/
