@@ -1,8 +1,13 @@
-# USBXpress version
+# Intro
 
-This is an intermediate branch for Windows users that allows to use
-original drivers as is. This makes it possible to use both original
-software for the watch and this code without the need to reinstall
-driver.
+This is [rudo-thomas's](https://github.com/rudo-thomas) fork of
+https://github.com/mlt/schwinn810 (look for the original README there).
 
-Note that you must place your original `SiUSBXp.dll` into e.g. `<path to this repo copy>\src\core\x86\` . `SiUSBXp.dll` version must match that of a driver. That is if you install latest driver from Silicon Labs (4.0 as of now), you'd have to use `SiUSBXp.dll` from the same kit. If you are using 64 bit Python, place a copy of 64 bit version of `SiUSBXp.dll` (from silab.com) to `<path to this repo copy>\src\core\x64\`.
+My motivation was to use `cp210x` "proxy" DLL `SiUSBXp.dll` to learn about how
+to talk to a particular device.
+
+My "master" branch has the following:
+1. the upstream "master" +
+1. upstread "dev" (merged up to tag `0.3rc1`) +
+1. essential fixes from my "cp210x-fixes" branch (pull to be requested)
+1. further development for my use case (trivialities, really)
