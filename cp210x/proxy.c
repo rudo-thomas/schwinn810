@@ -142,7 +142,7 @@ SI_STATUS WINAPI proxySI_CheckRXQueue(
 	)
 {
   SI_STATUS err = SI_CheckRXQueue(cyHandle, lpdwNumBytesInQueue, lpdwQueueStatus);
-  fprintf(file, "SI_CheckRXQueue(cyHandle, lpdwNumBytesInQueue, lpdwQueueStatus)\n");
+  fprintf(file, "0x%X = SI_CheckRXQueue(cyHandle=0x%p, lpdwNumBytesInQueue=>0x%lX, lpdwQueueStatus=>0x%lX)\n", err, cyHandle, *lpdwNumBytesInQueue, *lpdwQueueStatus);
   return err;
 }
 
