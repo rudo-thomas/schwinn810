@@ -8,7 +8,7 @@ static void __attribute__((constructor))
 your_lib_init(void)
 {
   TCHAR path[MAX_PATH];
-  HRESULT hr = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, path);
+  SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, path);
   strcat(path, "\\cp210.txt");
   printf("Logging into %s\n", path);
   file = fopen(path, "w");
